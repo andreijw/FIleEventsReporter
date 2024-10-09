@@ -1,2 +1,36 @@
 # FIleEventsReporter
-A simple Windows mini-filter to report and alert on all RPC file events. It has a simple C++ cli console to load and unload the filter and control the policy for actions to take.
+A simple Windows mini-filter to report and alert on all RPC file events
+
+# Problem Statement
+Create a simple minifilter to track all the different RPC file events. Creation, deletion, update, etc. There will be a simple C++ cli console to load / unload the minifiter as well as the minifilter driver.
+
+# Assumptions
+
+# Design
+
+# System (Versions should probably match this or be higher)
+- gcc.exe (Rev3, Built by MSYS2 project) 13.2.0
+- g++.exe (Rev3, Built by MSYS2 project) 13.2.0
+- CMake version 3.28.3-msvc11
+- Microsoft Visual Studio Professional 2022 (64-bit) - Preview Version 17.11.0 Preview 1.1
+- Windows 10
+
+# Memory Profiling
+- The memory profiling for the application was done with the Dr. Memory (Windows-only tool) 
+
+# Build Process
+- The project is built using CMake, the CMakeLists.txt file is provided in the root directory. I was building it through VS 2022, but it can also be built manually as long as you have CMake and a C++ compiler installed.
+- The project is built using the following commands:
+```sh
+mdkir out
+cd out
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make 
+#cmake --build . --config Release
+```
+
+# Tests (Not currently implemented, TBD)
+
+# Improvements
+
+# Compatibility Issues
