@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "cctype": "cpp",
+        "xstring": "cpp",
+        "algorithm": "cpp"
+    }
+}

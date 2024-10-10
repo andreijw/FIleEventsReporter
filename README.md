@@ -2,7 +2,9 @@
 A simple Windows mini-filter to report and alert on all RPC file events
 
 # Problem Statement
-Create a simple minifilter to track all the different RPC file events. Creation, deletion, update, etc. There will be a simple C++ cli console to load / unload the minifiter as well as the minifilter driver.
+- Create a simple minifilter to track all the different RPC file events. Creation, deletion, update, etc. There will be a simple C++ cli console to load / unload the minifiter as well as the minifilter driver.
+- The user can enter commands while the program is running. ["start", "unload"]. To load the minifilter and start reporting on event actions or to unload it and exit. Additionally, the cli can take the "exit"
+command to exit the program during the execution. This will clear up any resources and exit the program gracefully. This will also unload the minifilter.
 
 # Assumptions
 
