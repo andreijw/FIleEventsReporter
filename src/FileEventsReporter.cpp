@@ -35,3 +35,14 @@ static bool validateArguments(int argc, char* argv[]){
 
 	return true;
 }
+
+int main(int argc, char* argv[])
+{
+	if (!validateArguments(argc, argv)) {
+		return 1;
+	}
+
+    // Wait for all threads to finish
+	cout << "FileEventsReporter execution complete" << endl;
+	return 0;
+}
