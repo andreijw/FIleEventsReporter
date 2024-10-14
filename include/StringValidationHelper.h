@@ -10,6 +10,7 @@
 #include <algorithm>
 
 #include "Constants.h"
+#include "CommandHelper.h"
 
 namespace StringValidationHelper {
 	/**
@@ -18,14 +19,14 @@ namespace StringValidationHelper {
 	* @param str The string to validate
 	* @return bool True if the string is a valid command, false otherwise
 	*/
-	bool isCommandValid(const char* str) {
+	bool isCommandValid(const char* str, Constants::Command& command) {
 		// Check to see if the string is empty
 		if (str == nullptr || str[0] == '\0') {
 			return false;
 		}
 
         // Check to see if the string is a valid command
-		return std::any_of(Constants::VALID_COMMANDS.begin(), Constants::VALID_COMMANDS.end(),
-            [str](const std::string& command) { return command == str; });
+		command = CommandHelper::getCommandFromString(str);
+		return command != Constants::Command::INVALID;
 	}
 };

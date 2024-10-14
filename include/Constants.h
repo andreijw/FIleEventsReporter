@@ -10,9 +10,21 @@
 #pragma once
 
 #include <string>
-#include <array>
+#include <unordered_map>
 
 namespace Constants{
     constexpr int CLI_ARGUMENTS = 2;
-    const std::array<std::string, 3> VALID_COMMANDS = {"start", "unload", "exit"};
+
+    enum class Command {
+        START,
+        UNLOAD,
+        EXIT,
+        INVALID
+    };
+
+    const std::unordered_map<std::string, Command> COMMAND_MAP = {
+        {"start", Command::START},
+        {"unload", Command::UNLOAD},
+        {"exit", Command::EXIT}
+    };
 };

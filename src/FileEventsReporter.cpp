@@ -18,7 +18,7 @@
 
 using namespace std;
 
-static bool validateArguments(int argc, char* argv[]){
+static bool validateArguments(int argc, char* argv[], Constants::Command& command){
     // Ensure the user has provided the correct number of arguments.
 	if (argc < Constants::CLI_ARGUMENTS)
 	{
@@ -27,7 +27,7 @@ static bool validateArguments(int argc, char* argv[]){
 	}
 
     // Validate the input command
-    if (!StringValidationHelper::isCommandValid(argv[1]))
+    if (!StringValidationHelper::isCommandValid(argv[1], command))
     {
         cerr << "Invalid input command " << argv[1] << endl;
         return false;
@@ -38,8 +38,28 @@ static bool validateArguments(int argc, char* argv[]){
 
 int main(int argc, char* argv[])
 {
-	if (!validateArguments(argc, argv)) {
+	Constants::Command command = Constants::Command::INVALID;
+	// Validate the input arguments
+	if (!validateArguments(argc, argv, command)) {
 		return 1;
+	}
+
+	switch (command) {
+		case Constants::Command::START:
+            std::cout << "Starting FileEventsReporter..." << std::endl;
+            // Add logic to start the FileEventsMiniFilter
+            break;
+        case Constants::Command::UNLOAD:
+            std::cout << "Unloading FileEventsReporter..." << std::endl;
+            // Add logic to unload the FileEventsMiniFilter
+            break;
+        case Constants::Command::EXIT:
+            std::cout << "Exiting FileEventsReporter..." << std::endl;
+            // Add logic to exit the program gracefully
+            break;
+		 default:
+            cerr << "Unknown command: " << argv[1] << endl;
+            return 1;
 	}
 
     // Wait for all threads to finish
