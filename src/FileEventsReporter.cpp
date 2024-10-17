@@ -14,6 +14,7 @@
 #include <iostream>
 
 #include "Constants.h"
+#include "FilterLoader.h"
 #include "StringValidationHelper.h"
 
 using namespace std;
@@ -44,18 +45,22 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
+    // Generate filter settings from environment variables / user input
+    /** ToDO **/
+    
+    FilterLoader::FilterLoader filterLoader;
 	switch (command) {
 		case Constants::Command::START:
             std::cout << "Starting FileEventsReporter..." << std::endl;
-            // Add logic to start the FileEventsMiniFilter
+            filterLoader.StartFilter();
             break;
         case Constants::Command::UNLOAD:
             std::cout << "Unloading FileEventsReporter..." << std::endl;
-            // Add logic to unload the FileEventsMiniFilter
+            filterLoader.StopFiler();
             break;
         case Constants::Command::EXIT:
             std::cout << "Exiting FileEventsReporter..." << std::endl;
-            // Add logic to exit the program gracefully
+            filterLoader.StopFiler();
             break;
 		 default:
             cerr << "Unknown command: " << argv[1] << endl;
