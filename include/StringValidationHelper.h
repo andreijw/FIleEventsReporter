@@ -19,9 +19,9 @@ namespace StringValidationHelper {
 	* @param str The string to validate
 	* @return bool True if the string is a valid command, false otherwise
 	*/
-	bool isCommandValid(const char* str, Constants::Command& command) {
+	bool isCommandValid(const std::string str, Constants::Command& command) {
 		// Check to see if the string is empty
-		if (str == nullptr || str[0] == '\0') {
+		if (str.empty()) {
 			return false;
 		}
 

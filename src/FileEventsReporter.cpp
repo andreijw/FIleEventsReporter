@@ -19,55 +19,64 @@
 
 using namespace std;
 
-static bool validateArguments(int argc, char* argv[], Constants::Command& command){
+static bool validateArguments(int argc, char* argv[]){
     // Ensure the user has provided the correct number of arguments.
-	if (argc < Constants::CLI_ARGUMENTS)
+	if (argc != Constants::CLI_ARGUMENTS)
 	{
-		cerr << "Usage: FileEventsReporter [start unload]" << endl;
+		cerr << Constants::USAGE_MESSAGE << endl;
 		return false;
 	}
-
-    // Validate the input command
-    if (!StringValidationHelper::isCommandValid(argv[1], command))
-    {
-        cerr << "Invalid input command " << argv[1] << endl;
-        return false;
-    }
-
 	return true;
 }
 
 int main(int argc, char* argv[])
 {
-	Constants::Command command = Constants::Command::INVALID;
 	// Validate the input arguments
-	if (!validateArguments(argc, argv, command)) {
+	if (!validateArguments(argc, argv)) {
 		return 1;
 	}
 
+    FilterLoader::FilterLoader filterLoader;
+    bool cliRunning = true;
+    
     // Generate filter settings from environment variables / user input
     /** ToDO **/
-    
-    FilterLoader::FilterLoader filterLoader;
-	switch (command) {
-		case Constants::Command::START:
-            std::cout << "Starting FileEventsReporter..." << std::endl;
-            filterLoader.StartFilter();
-            break;
-        case Constants::Command::UNLOAD:
-            std::cout << "Unloading FileEventsReporter..." << std::endl;
-            filterLoader.StopFiler();
-            break;
-        case Constants::Command::EXIT:
-            std::cout << "Exiting FileEventsReporter..." << std::endl;
-            filterLoader.StopFiler();
-            break;
-		 default:
-            cerr << "Unknown command: " << argv[1] << endl;
-            return 1;
-	}
+    // filterLoader.GenerateFilterSettings();
+
+    // Main loop
+    cout << Constants::USAGE_MESSAGE << endl;
+    string commandString;
+    Constants::Command command;
+    while (cliRunning) {
+        // Validate the input command
+        getline(cin, commandString);        
+        if (!StringValidationHelper::isCommandValid(commandString, command))
+        {
+            cerr << Constants::INVALID_INPUT_COMMAND << endl;
+            continue;
+        }
+
+        switch (command) {
+            case Constants::Command::START:
+                std::cout << Constants::START_MESSAGE << std::endl;
+                filterLoader.StartFilter();
+                break;
+            case Constants::Command::UNLOAD:
+                std::cout << Constants::UNLOAD_MESSAGE << std::endl;
+                filterLoader.StopFiler();
+                break;
+            case Constants::Command::EXIT:
+                std::cout << Constants::EXIT_MESSAGE << std::endl;
+                filterLoader.StopFiler();
+                cliRunning = false;
+                break;
+            default:
+                cerr << Constants::INVALID_COMMAND_MESSAGE << argv[1] << endl;
+                return 1;
+	    }
+    }
 
     // Wait for all threads to finish
-	cout << "FileEventsReporter execution complete" << endl;
+	cout << Constants::EXECUTION_COMPLETE << endl;
 	return 0;
 }
