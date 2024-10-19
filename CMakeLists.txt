@@ -15,7 +15,7 @@ endif()
 project ("FileEventsReporter" VERSION 1.0 DESCRIPTION "RPC File Events Reporter" LANGUAGES CXX)
 
 # Include library files.
-add_executable (file-events-reporter "${CMAKE_SOURCE_DIR}/src/FileEventsReporter.cpp")
+add_executable (file-events-reporter "${CMAKE_SOURCE_DIR}/src/FileEventsReporter.cpp" "${CMAKE_SOURCE_DIR}/src/FilterLoader.cpp")
 target_include_directories(file-events-reporter PRIVATE "${CMAKE_SOURCE_DIR}/include")
 target_compile_features(file-events-reporter PUBLIC cxx_std_20)
 
