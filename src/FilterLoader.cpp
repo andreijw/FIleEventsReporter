@@ -11,11 +11,10 @@ namespace FilterLoader
 {
     FilterLoader::FilterLoader()
     {
+        m_filterLoaded = false;
     }
 
-    FilterLoader::~FilterLoader()
-    {
-    }
+    FilterLoader::~FilterLoader(){}
 
     bool FilterLoader::StartFilter()
     {
@@ -29,12 +28,20 @@ namespace FilterLoader
 
     bool FilterLoader::LoadFilter()
     {
+        if (m_filterLoaded)
+        {
+            return true;
+        }
         // Add logic to load the minifilter
         return true;
     }
 
     bool FilterLoader::UnloadFilter()
     {
+        if (!m_filterLoaded)
+        {
+            return true;
+        }
         // Add logic to unload the minifilter
         return true;
     }
