@@ -16,16 +16,22 @@ namespace FilterLoader
 
     FilterLoader::~FilterLoader(){}
 
+    /// @brief Start the kernel filter to log IO operations
+    /// @return Success or failure of the operation
     bool FilterLoader::StartFilter()
     {
         return LoadFilter();
     }
 
+    /// @brief Stop the filter from logging IO operations
+    /// @return Success or failure of the operation
     bool FilterLoader::StopFiler()
     {
         return UnloadFilter();
     }
 
+    /// @brief Actually load the filter
+    /// @return Success or failure of the operation
     bool FilterLoader::LoadFilter()
     {
         if (m_filterLoaded)
@@ -36,6 +42,8 @@ namespace FilterLoader
         return true;
     }
 
+    /// @brief Actually unload the filter
+    /// @return Success or failure of the operation
     bool FilterLoader::UnloadFilter()
     {
         if (!m_filterLoaded)
