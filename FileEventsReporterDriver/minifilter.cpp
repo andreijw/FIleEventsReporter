@@ -5,8 +5,8 @@ PFLT_FILTER gFilterHandle;
 ULONG_PTR OperationStatusCtx = 1;
 
 // Function prototypes
-NTSTATUS
-DriverEntry(
+extern "C" NTSTATUS
+FxDriverEntry(
     _In_ PDRIVER_OBJECT DriverObject,
     _In_ PUNICODE_STRING RegistryPath
 );
@@ -87,8 +87,8 @@ const FLT_REGISTRATION FilterRegistration = {
 };
 
 // Implementation
-NTSTATUS
-DriverEntry(
+extern "C" NTSTATUS
+FxDriverEntry(
     _In_ PDRIVER_OBJECT DriverObject,
     _In_ PUNICODE_STRING RegistryPath
 )
@@ -144,6 +144,7 @@ InstanceTeardownCallback(
 )
 {
     UNREFERENCED_PARAMETER(FltObjects);
+    UNREFERENCED_PARAMETER(Reason);
     DbgPrint("InstanceTeardownCallback: Instance teardown for volume\n");
 	return STATUS_SUCCESS;
 }

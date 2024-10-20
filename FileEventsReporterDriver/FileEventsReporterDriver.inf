@@ -4,8 +4,8 @@
 
 [Version]
 Signature   = "$WINDOWS NT$"
-Class       = FileSystem
-ClassGuid   = {8ECC055D-047F-11D1-A537-0000F8753ED1}
+Class       = FSFilterSystem
+ClassGuid   = {5d1b9aaa-01e2-46af-849f-272b3f324c46}
 Provider    = %ManufacturerName%
 CatalogFile = FileEventsReporterDriver.cat
 DriverVer   = 10/01/2023,1.0.0.0
