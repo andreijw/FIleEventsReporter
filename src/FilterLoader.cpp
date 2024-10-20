@@ -6,7 +6,6 @@
 * 
 */
 #include "FilterLoader.h"
-#include <windows.h>
 
 namespace FilterLoader
 {
