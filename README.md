@@ -66,9 +66,27 @@ certmgr.exe -add TestCert.cer -s -r localMachine trustedpublishers
 certmgr.exe -add TestCert.cer -s -r localMachine root
 ```
 
-- Sign the driver
+#### Sign the driver
 
 ```sh
-signtool sign /v /s PrivateCertStore /n "TestCert" /t http://timestamp.digicert.com /fd SHA256 path\to\your\driver.sys
-#sign /v /s PrivateCertStore /n "TestCert" /t http://timestamp.digicert.com /fd SHA256 .\x64\Debug\FileEventsReporterDriver\FileEventsReporterDriver.sys
+signtool sign /v /s PrivateCertStore /n "TestCert" /t http://timestamp.digicert.com /fd SHA256 .\x64\Debug\FileEventsReporterDriver\FileEventsReporterDriver.sys
+```
+
+#### Generate and Sign the catalog file
+
+```sh
+Inf2Cat /driver:"C:\Users\andre\Desktop\Progamming\FIleEventsReporter\FileEventsReporterDriver\x64\Debug\FileEventsReporterDriver" /os:10_X64
+signtool sign /v /s PrivateCertStore /n "TestCert" /t http://timestamp.digicert.com /fd SHA256 C:\Users\andre\Desktop\Progamming\FIleEventsReporter\FileEventsReporterDriver\x64\Debug\FileEventsReporterDriver\fileeventsreporterdriver.cat
+```
+
+#### Manual install
+
+```sh
+pnputil /add-driver path\to\FileEventsReporterDriver.inf /install
+```
+
+#### Verify Driver Signature
+
+```sh
+signtool verify /kp path\to\FileEventsReporterDriver.sys
 ```
